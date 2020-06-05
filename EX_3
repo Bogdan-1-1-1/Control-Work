@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class SetOfStacks {
+
+    private int lengOfStack, numOfStack = 0;
+    private ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
+
+    public SetOfStacks(int lengOfStack) {
+        this.lengOfStack = lengOfStack;
+        arr.add(new ArrayList<Integer>());
+    }
+
+
+    public void push(int val) {
+        if(arr.get(numOfStack).size() >= lengOfStack) {
+            arr.add(new ArrayList<>());
+            numOfStack++;
+        }
+        arr.get(numOfStack).add(val);
+    }
+
+    public void pop() {
+        arr.get(numOfStack).remove(arr.get(numOfStack).size()-1);
+        if(arr.get(numOfStack).size() == 0) {
+            arr.remove(numOfStack);
+            numOfStack--;
+        }
+    }
+
+    public void popAt(int index) {
+        if(index > numOfStack) return;
+        arr.get(index).remove(arr.get(index).size()-1);
+        if(arr.get(index).size() == 0) {
+            arr.remove(index);
+            numOfStack--;
+        }
+    }
+}
