@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class SetOfStacks {
 
@@ -10,7 +11,6 @@ public class SetOfStacks {
         arr.add(new ArrayList<Integer>());
     }
 
-
     public void push(int val) {
         if(arr.get(numOfStack).size() >= lengOfStack) {
             arr.add(new ArrayList<>());
@@ -18,7 +18,6 @@ public class SetOfStacks {
         }
         arr.get(numOfStack).add(val);
     }
-
     public void pop() {
         arr.get(numOfStack).remove(arr.get(numOfStack).size()-1);
         if(arr.get(numOfStack).size() == 0) {
@@ -26,7 +25,6 @@ public class SetOfStacks {
             numOfStack--;
         }
     }
-
     public void popAt(int index) {
         if(index > numOfStack) return;
         arr.get(index).remove(arr.get(index).size()-1);
@@ -35,4 +33,21 @@ public class SetOfStacks {
             numOfStack--;
         }
     }
+    public int get(int StackIndex, int valIndex) {
+        if(StackIndex > numOfStack || StackIndex < 0) {
+            throw new InputMismatchException();
+        }
+        if(arr.get(StackIndex).size() < valIndex || valIndex < 0) {
+            throw new InputMismatchException();
+        }
+        return arr.get(StackIndex).get(valIndex);
+    }
+    public int getLengOfStacks() {
+        return lengOfStack;
+    }
+    public int getNumOfStacks() {
+        return numOfStack+1;
+    }
+
 }
+
