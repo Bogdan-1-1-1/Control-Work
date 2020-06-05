@@ -1,11 +1,10 @@
-
 import java.util.ArrayList;
 
 public class checkIp {
     public static void main(String[] args) {
         System.out.println(isIp("128.128.5.255."));
     }
-    
+
     public static boolean isIp(String s) {
         ArrayList<Integer> arr = new ArrayList<>();
         String str = "";
@@ -32,3 +31,4 @@ public class checkIp {
         return true;
     }
 }
+
