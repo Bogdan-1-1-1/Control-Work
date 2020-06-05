@@ -1,1 +1,34 @@
 
+import java.util.ArrayList;
+
+public class checkIp {
+    public static void main(String[] args) {
+        System.out.println(isIp("128.128.5.255."));
+    }
+    
+    public static boolean isIp(String s) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        String str = "";
+        int valOfSpots = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if((s.charAt(i) >= 48 && s.charAt(i) <= 57) || s.charAt(i) == '.') {
+                if (s.charAt(i) == '.') {
+                    arr.add(Integer.parseInt(str));
+                    str = "";
+                    valOfSpots++;
+                } else {
+                    str += s.charAt(i);
+                    if(i == s.length()-1) arr.add(Integer.parseInt(str));
+                }
+            } else return false;
+        }
+        if(valOfSpots > 3) return false;
+        if(arr.size() != 4) return false;
+        for (int i = 0; i < arr.size(); i++) {
+            if(arr.get(i) > 255 || arr.get(i) < 0) return false;
+        }
+
+
+        return true;
+    }
+}
